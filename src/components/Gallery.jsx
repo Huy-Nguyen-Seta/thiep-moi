@@ -61,8 +61,8 @@ export default function Gallery() {
     >
       <h2 className="uppercase font-bold text-center" style={titleStyle}>Album Ảnh Cưới</h2>
 
-      <div className="mt-6 w-full max-w-[390px] md:max-w-[560px] relative z-10">
-        <div className="grid grid-cols-2 gap-3 md:gap-4">
+      <div className="mt-6 w-full px-2 max-w-[340px] sm:max-w-[390px] md:max-w-[560px] relative z-10">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
           {photos.slice(0, 4).map((p, i) => (
             <div
               key={p.id}

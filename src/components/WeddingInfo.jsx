@@ -19,8 +19,8 @@ function FamilySide({ title, father, mother, address }) {
   return (
     <div className="flex flex-col gap-1.5">
       <span style={{ color: PRIMARY, fontFamily: SERIF }}>{title}</span>
-      <span className="text-[13px] md:text-[23px] whitespace-nowrap" style={{ color: PRIMARY, fontFamily: SERIF, fontWeight: 600 }}>{father}</span>
-      <span className="text-[13px] md:text-[23px] whitespace-nowrap" style={{ color: PRIMARY, fontFamily: SERIF, fontWeight: 600 }}>{mother}</span>
+      <span className="text-[12px] md:text-[23px]" style={{ color: PRIMARY, fontFamily: SERIF, fontWeight: 600 }}>{father}</span>
+      <span className="text-[12px] md:text-[23px]" style={{ color: PRIMARY, fontFamily: SERIF, fontWeight: 600 }}>{mother}</span>
       <div className="mt-1 w-[90%] md:w-[80%] mx-auto whitespace-pre-line flex flex-col" style={{ color: PRIMARY, fontFamily: SERIF, fontSize: '10px' }}>{address}</div>
     </div>
   )
@@ -29,7 +29,7 @@ function FamilySide({ title, father, mother, address }) {
 const Name = ({ children }) => (
   <h3
     className="w-full flex items-center justify-center whitespace-nowrap leading-[55px] md:leading-[80px]"
-    style={{ fontFamily: QELLIA, color: PRIMARY, fontSize: 'clamp(40px, 9vw, 64px)' }}
+    style={{ fontFamily: QELLIA, color: PRIMARY, fontSize: 'clamp(28px, 8vw, 64px)' }}
   >
     {children}
   </h3>

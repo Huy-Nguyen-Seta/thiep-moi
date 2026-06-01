@@ -1,15 +1,15 @@
 /* ── Couple composition — ported 1:1 from the original "Hoa Mộc Xanh" theme ── */
 .hero {
   position: relative;
-  background: transparent;            /* the card itself is #FFFAF7 */
-  padding-top: 210px;                  /* clean white space before the couple (original header pt) */
-  padding-bottom: 16px;                /* original header pb-4 */
+  background: transparent;
+  padding-top: 140px;   /* mobile: less padding */
+  padding-bottom: 16px;
 }
 
 .hero-couple {
   position: relative;
-  width: 320px;
-  height: 440px;
+  width: min(320px, 90vw);
+  height: min(440px, 124vw);
   margin: 0 auto;
 }
 
@@ -100,7 +100,7 @@
 }
 .hero-name {
   font-family: var(--font-couple);
-  font-size: 25px;
+  font-size: clamp(18px, 5.5vw, 25px);
   line-height: 1.1;
   white-space: nowrap;
   color: var(--green-600);
@@ -109,7 +109,7 @@
 /* ── Desktop proportions (md) ── */
 @media (min-width: 768px) {
   .hero { padding-top: 330px; padding-bottom: 32px; }
-  .hero-couple { width: 500px; height: 640px; }
+  .hero-couple { width: 500px; height: 640px; } /* override the vw-based mobile size */
   .hero-band img { height: 150px; }
   .hero-band { top: 43.75%; }
   .hero-fixed-flower { top: 608px; left: -228px; width: 530px; }

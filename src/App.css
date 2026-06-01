@@ -173,3 +173,25 @@
 @media (max-width: 640px) {
   .main-content-inner { box-shadow: none; }
 }
+
+/* ── Mobile flower size reductions (avoid overflowing 360px viewport) ── */
+@media (max-width: 480px) {
+  .fbg-1  { width: 300px; left: 40px; }
+  .fbg-2  { width: 220px; left: -40px; }
+  .fbg-3  { width: 220px; left: -90px; }
+  .fbg-4  { width: 280px; right: -100px; }
+  .fbg-5  { width: 340px; left: -60px; }
+  .fbg-6  { width: 160px; right: -70px; }
+  .fbg-7  { width: 320px; right: -100px; }
+  .fbg-8  { width: 260px; left: -130px; }
+  .fbg-9  { width: 460px; left: -120px; }
+  .fbg-11 { width: 160px; right: -70px; }
+  /* sec-flowers */
+  .fbg-rc8 { width: 280px; left: -180px; }
+  .fbg-rc9 { width: 460px; left: -120px; }
+  .fbg-rcr { width: 220px; right: -80px; }
+  .fbg-lo11 { width: 160px; right: -70px; }
+  .fbg-gb  { width: 220px; right: -80px; }
+  .fbg-env { width: 180px; right: -60px; }
+  .fbg-ti10 { width: 160px; }
+}

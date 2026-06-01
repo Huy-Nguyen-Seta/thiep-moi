@@ -17,8 +17,8 @@ const titleStyle = {
 }
 
 const accounts = [
-  { label: 'Cô Dâu - Trần Đức Linh',        qr: '/photos/qr-groom.jpg', bank: 'VPBank', number: '0941735992',   name: 'TRAN DUC LINH' },
-  { label: 'Chú Rể - Trương Ngọc Linh Đan',  qr: '/photos/qr-bride.jpg', bank: 'MB Bank', number: '201103221103', name: 'TRUONG NGOC LINH DAN' },
+  { label: 'Chú Rể - Trần Đức Linh',        qr: '/photos/qr-groom.jpg', bank: 'VPBank', number: '0941735992',   name: 'TRAN DUC LINH' },
+  { label: 'Cô Dâu - Trương Ngọc Linh Đan',  qr: '/photos/qr-bride.jpg', bank: 'MB Bank', number: '201103221103', name: 'TRUONG NGOC LINH DAN' },
 ]
 
 /* Greek-key (fret) gold corner bracket */
@@ -55,13 +55,13 @@ function Coin({ idx, size, pos }) {
   )
 }
 
-/* Coins sit OUTSIDE the envelope edges (spread to both sides); the envelope stays on top */
+/* Coins use % so they scale with the envelope wrapper and never overflow on mobile */
 const COINS = [
-  { idx: 1, size: 33, pos: { top: '-4%', right: '-13%' } },
-  { idx: 2, size: 27, pos: { top: '16%', left: '-16%' } },
-  { idx: 3, size: 30, pos: { bottom: '16%', right: '-15%' } },
-  { idx: 4, size: 24, pos: { bottom: '4%', left: '-13%' } },
-  { idx: 5, size: 23, pos: { top: '48%', right: '-19%' } },
+  { idx: 1, size: 28, pos: { top: '-6%',  right: '-10%' } },
+  { idx: 2, size: 24, pos: { top: '14%',  left:  '-12%' } },
+  { idx: 3, size: 26, pos: { bottom: '14%', right: '-11%' } },
+  { idx: 4, size: 22, pos: { bottom: '2%', left:  '-10%' } },
+  { idx: 5, size: 20, pos: { top: '46%',  right: '-14%' } },
 ]
 
 export default function RedEnvelope() {
@@ -72,7 +72,7 @@ export default function RedEnvelope() {
       <h2 className="uppercase" style={titleStyle}>Phong Bao Mừng Cưới</h2>
 
       {/* Envelope + floating coins (hover → coins fly up & spin) */}
-      <div className="env-group relative my-8" style={{ width: 150, height: 210 }}>
+      <div className="env-group relative my-8" style={{ width: 'min(150px, 42vw)', height: 'min(210px, 58vw)' }}>
         {/* soft gold glow behind */}
         <span className="absolute -inset-10 -z-10 rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,206,92,.5), rgba(255,206,92,0) 70%)' }} />
 
@@ -118,12 +118,12 @@ export default function RedEnvelope() {
               <button onClick={() => setOpen(false)} aria-label="Đóng" className="text-white text-2xl leading-none hover:opacity-70">✕</button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 p-6" style={{ color: PRIMARY, fontFamily: SERIF }}>
+            <div className="grid grid-cols-2 gap-2 md:gap-4 p-3 md:p-6" style={{ color: PRIMARY, fontFamily: SERIF }}>
               {accounts.map((a) => (
                 <div key={a.number} className="flex flex-col items-center text-center">
-                  <p className="text-sm md:text-base font-medium mb-3">{a.label}</p>
-                  <div className="rounded-xl bg-white p-2" style={{ border: `2px solid ${PRIMARY}20` }}>
-                    <img src={a.qr} alt={`QR ${a.bank}`} className="w-36 h-36 md:w-44 md:h-44 object-contain" loading="lazy" />
+                  <p className="text-xs md:text-base font-medium mb-2">{a.label}</p>
+                  <div className="rounded-xl bg-white p-1 md:p-2" style={{ border: `2px solid ${PRIMARY}20` }}>
+                    <img src={a.qr} alt={`QR ${a.bank}`} className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-contain" loading="lazy" />
                   </div>
                   <p className="mt-3 text-sm">{a.bank}</p>
                   <p className="text-sm font-mono">{a.number}</p>

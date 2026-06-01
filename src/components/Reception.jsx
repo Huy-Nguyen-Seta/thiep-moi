@@ -29,7 +29,7 @@ function MiniCalendar({ year, month, day }) {
 
   return (
     <div
-      className="w-full max-w-[280px] md:max-w-[310px] mx-auto rounded-lg overflow-hidden border mt-2"
+      className="w-full max-w-[260px] sm:max-w-[280px] md:max-w-[310px] mx-auto rounded-lg overflow-hidden border mt-2"
       style={{ borderColor: CAL_BORDER, color: PRIMARY }}
     >
       <div className="text-center py-2.5 text-[13px] md:text-[14px] font-semibold border-b tracking-wide" style={{ borderColor: CAL_BORDER }}>
@@ -75,12 +75,12 @@ export default function Reception() {
         <h3 className="font-normal uppercase text-[20px] md:text-[26px]">Tiệc cưới sẽ diễn ra vào lúc:</h3>
         <div className="text-[20px] md:text-[30px]">11:00</div>
 
-        <div className="flex items-center gap-6">
-          <span className="text-[12px] md:text-[16px] uppercase text-right" style={{ fontWeight: 600 }}>Thứ Ba</span>
+        <div className="flex items-center gap-3 md:gap-6">
+          <span className="text-[11px] md:text-[16px] uppercase text-right" style={{ fontWeight: 600 }}>Thứ Ba</span>
           <Bar />
-          <span className="text-[30px] md:text-[40px]" style={{ fontWeight: 600 }}>09</span>
+          <span className="text-[26px] md:text-[40px]" style={{ fontWeight: 600 }}>09</span>
           <Bar />
-          <span className="text-[12px] md:text-[16px] uppercase text-left" style={{ fontWeight: 600 }}>Tháng 07</span>
+          <span className="text-[11px] md:text-[16px] uppercase text-left" style={{ fontWeight: 600 }}>Tháng 07</span>
         </div>
 
         <div className="text-[18px] md:text-[24px]">2026</div>

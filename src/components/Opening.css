@@ -51,10 +51,10 @@
 .opening-card {
   position: relative;
   background: #F4F1E6;
-  width: min(640px, 94vw);
-  aspect-ratio: 1.55 / 1;
-  max-height: 90vh;
-  border-radius: 8px;
+  width: min(560px, 92vw);
+  /* No aspect-ratio — height follows content so nothing gets clipped */
+  max-height: 92vh;
+  border-radius: 12px;
   box-shadow:
     0 30px 110px rgba(0,0,0,0.6),
     0 8px 30px rgba(0,0,0,0.4);
@@ -90,13 +90,12 @@
 .opening-content {
   position: relative;
   z-index: 2;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 32px 40px;
+  padding: 80px 40px 48px;   /* top: make room for flowers; bottom: breathing space */
 }
 
 /* Heart icon */
@@ -295,9 +294,18 @@
 }
 
 @media (max-width: 540px) {
-  .opening-card { aspect-ratio: 1.15 / 1; }
-  .opening-flower--tl { width: 220px; top: -40px; left: -48px; }
-  .opening-flower--br { width: 190px; bottom: -50px; right: -40px; }
-  .opening-content { padding: 24px 28px; }
+  .opening-flower--tl { width: 200px; top: -36px; left: -44px; }
+  .opening-flower--br { width: 170px; bottom: -44px; right: -36px; }
+  .opening-content { padding: 64px 28px 40px; }
   .burst-bloom { width: 180px; margin-left: -90px; margin-top: -90px; }
+}
+
+@media (max-width: 420px) {
+  .opening-flower--tl { width: 170px; top: -28px; left: -36px; }
+  .opening-flower--br { width: 145px; bottom: -36px; right: -28px; }
+  .opening-content { padding: 52px 20px 36px; }
+  .opening-heart-icon { width: 44px; height: 44px; margin-bottom: 10px; }
+  .opening-groom, .opening-bride { font-size: clamp(1.7rem, 8.5vw, 2.4rem); }
+  .opening-btn { padding: 11px 28px; font-size: 0.95rem; }
+  .opening-than-moi { margin-bottom: 18px; }
 }
