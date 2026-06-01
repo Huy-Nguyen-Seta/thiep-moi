@@ -16,11 +16,11 @@ const titleStyle = {
 }
 
 const events = [
-  { id: 1, time: '17:30', label: 'Đón khách' },
-  { id: 2, time: '18:30', label: 'Khai tiệc' },
-  { id: 3, time: '18:45', label: 'Rót rượu, cắt bánh' },
-  { id: 4, time: '19:00', label: 'Phục vụ món chính' },
-  { id: 5, time: '21:00', label: 'Kết thúc tiệc' },
+  { id: 1, time: '10:30', label: 'Đón khách' },
+  { id: 2, time: '11:00', label: 'Khai tiệc' },
+  { id: 3, time: '11:20', label: 'Rót rượu, cắt bánh' },
+  { id: 4, time: '11:40', label: 'Phục vụ món chính' },
+  { id: 5, time: '13:40', label: 'Kết thúc tiệc' },
 ]
 
 export default function LoveStory() {
