@@ -116,20 +116,22 @@
 /* Names */
 .opening-groom,
 .opening-bride {
-  font-family: var(--font-couple);
-  font-size: clamp(2.3rem, 6vw, 3.1rem);
+  font-family: 'Pinyon Script', 'Great Vibes', cursive;
+  font-size: clamp(2.8rem, 8vw, 4.2rem);
   font-weight: 400;
   color: #30530F;
-  letter-spacing: 0.5px;
-  line-height: 1.15;
+  letter-spacing: 1px;
+  line-height: 1.2;
 }
 .opening-bride { margin-bottom: 16px; }
 .opening-amp {
-  font-family: 'UNI Chu truyen thong', 'Times New Roman', serif;
-  font-size: 1.5rem;
+  font-family: 'Pinyon Script', 'Great Vibes', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2.2rem;
   color: #5C8850;
   display: block;
-  margin: 4px 0;
+  margin: 2px 0;
   line-height: 1;
 }
 
@@ -150,16 +152,18 @@
 
 /* Date & invitation */
 .opening-date-text {
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
   color: #4A6838;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   margin-bottom: 6px;
 }
 .opening-than-moi {
-  font-family: var(--font-serif);
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
+  font-weight: 300;
   color: #618050;
   margin-bottom: 24px;
 }
@@ -190,11 +194,11 @@
   gap: 9px;
   background: #2c5320;
   color: white;
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  padding: 15px 60px;
+  letter-spacing: 1px;
+  padding: 14px 56px;
   border-radius: 100px;
   box-shadow: 0 5px 20px rgba(20,40,12,0.4);
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
@@ -305,7 +309,7 @@
   .opening-flower--br { width: 145px; bottom: -36px; right: -28px; }
   .opening-content { padding: 52px 20px 36px; }
   .opening-heart-icon { width: 44px; height: 44px; margin-bottom: 10px; }
-  .opening-groom, .opening-bride { font-size: clamp(1.7rem, 8.5vw, 2.4rem); }
+  .opening-groom, .opening-bride { font-size: clamp(2rem, 9.5vw, 2.8rem); }
   .opening-btn { padding: 11px 28px; font-size: 0.95rem; }
   .opening-than-moi { margin-bottom: 18px; }
 }

@@ -1,9 +1,8 @@
 import heroImg from '../assets/hero.png'
 import barImg from '../assets/decoration_bar.webp'
+import Reveal from './Reveal'
 import './Hero.css'
 
-/* Drop your real photos into  public/photos/  with these names.
-   Until then a placeholder shows. */
 const GROOM_PHOTO = '/photos/groom.jpg'
 const BRIDE_PHOTO = '/photos/bride.jpg'
 const onPhotoError = (e) => { e.currentTarget.src = heroImg }
@@ -12,31 +11,30 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-couple">
-        {/* Full-bleed dark-green jasmine band, centred behind the photos */}
         <div className="hero-band">
           <img src={barImg} alt="" />
         </div>
 
-        {/* Groom — upper-left, name to the right */}
+        {/* Groom — photo uses CSS animation (avoids conflict with rotate transform) */}
         <div className="hero-person hero-person--groom">
-          <div className="hero-photo">
+          <div className="hero-photo hero-photo--animate-groom">
             <img src={GROOM_PHOTO} alt="Trần Đức Linh" onError={onPhotoError} />
           </div>
-          <div className="hero-name-block">
+          <Reveal variant="right" delay="600ms" className="hero-name-block">
             <span className="hero-birthorder">Trưởng Nam</span>
             <span className="hero-name">Đức Linh</span>
-          </div>
+          </Reveal>
         </div>
 
-        {/* Bride — lower, name to the left */}
+        {/* Bride */}
         <div className="hero-person hero-person--bride">
-          <div className="hero-photo">
+          <div className="hero-photo hero-photo--animate-bride">
             <img src={BRIDE_PHOTO} alt="Trương Ngọc Linh Đan" onError={onPhotoError} />
           </div>
-          <div className="hero-name-block">
+          <Reveal variant="left" delay="800ms" className="hero-name-block">
             <span className="hero-birthorder">Thứ Nữ</span>
             <span className="hero-name">Linh Đan</span>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

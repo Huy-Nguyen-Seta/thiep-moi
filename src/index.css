@@ -74,12 +74,13 @@
   --radius-md: 16px;
   --radius-lg: 24px;
 
-  --font-script: 'Great Vibes', cursive;
-  /* Original template body/heading stack */
-  --font-serif: 'Baskerville', 'Times New Roman', serif;
-  /* Original template couple-name font */
-  --font-couple: 'Fz Aghita', 'Baskerville', 'Times New Roman', serif;
-  --font-sans: 'Baskerville', 'Times New Roman', serif;
+  /* Pinyon Script — closest to Edwardian Script ITC, main calligraphy font */
+  --font-script:  'Pinyon Script', 'Great Vibes', cursive;
+  /* Couple names: Pinyon Script large */
+  --font-couple:  'Pinyon Script', 'Great Vibes', cursive;
+  /* Elegant readable serif for body / dates */
+  --font-serif:   'Cormorant Garamond', 'Baskerville', 'Times New Roman', serif;
+  --font-sans:    'Cormorant Garamond', 'Baskerville', 'Times New Roman', serif;
 }
 
 *, *::before, *::after {

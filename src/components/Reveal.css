@@ -1,0 +1,32 @@
+/* ── Universal scroll-reveal animations ── */
+
+/* shared: hidden until .rv--in is added */
+.rv { will-change: transform, opacity; }
+
+/* fade-up (default) */
+.rv--up        { opacity: 0; transform: translateY(28px); }
+.rv--up.rv--in { animation: rv-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+@keyframes rv-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* scale-in (images, cards) */
+.rv--scale        { opacity: 0; transform: scale(0.92); }
+.rv--scale.rv--in { animation: rv-scale 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+@keyframes rv-scale {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* slide from left */
+.rv--left        { opacity: 0; transform: translateX(-32px); }
+.rv--left.rv--in { animation: rv-left 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+@keyframes rv-left {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* slide from right */
+.rv--right        { opacity: 0; transform: translateX(32px); }
+.rv--right.rv--in { animation: rv-right 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+@keyframes rv-right {
+  to { opacity: 1; transform: translateX(0); }
+}

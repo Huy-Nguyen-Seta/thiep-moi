@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
+import AnimatedText from './AnimatedText'
+import Reveal from './Reveal'
 
 /* Ported from the original "Hoa Mộc Xanh" (boho-floral-green) gallery + lightbox carousel.
    Drop album photos into  public/photos/  as album-1.jpg … album-8.jpg
@@ -59,13 +61,17 @@ export default function Gallery() {
       id="anh-cuoi"
       className="relative flex flex-col items-center px-6 md:px-10 pt-10 md:pt-14 pb-10 md:pb-12 overflow-visible z-10"
     >
-      <h2 className="uppercase font-bold text-center" style={titleStyle}>Album Ảnh Cưới</h2>
+      <Reveal as="h2" className="uppercase font-bold text-center" style={titleStyle}>
+        <AnimatedText text="Album Ảnh Cưới" charDelay={50} />
+      </Reveal>
 
       <div className="mt-6 w-full px-2 max-w-[340px] sm:max-w-[390px] md:max-w-[560px] relative z-10">
         <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
           {photos.slice(0, 4).map((p, i) => (
-            <div
+            <Reveal
               key={p.id}
+              variant={i % 2 === 0 ? 'left' : 'right'}
+              delay={`${i * 80}ms`}
               onClick={() => setIdx(i)}
               className="group relative aspect-square cursor-pointer overflow-hidden rounded-md border"
               style={{ borderColor: '#30530F30', background: p.gradient }}
@@ -76,7 +82,7 @@ export default function Gallery() {
                   +{ALBUM_COUNT - 4}
                 </div>
               )}
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

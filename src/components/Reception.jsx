@@ -1,4 +1,6 @@
 import flowerImg from '../assets/flower.webp'
+import AnimatedText from './AnimatedText'
+import Reveal from './Reveal'
 
 /* Ported 1:1 from the original "Hoa Mộc Xanh" (boho-floral-green) reception (m.zp) + mini calendar (tj). */
 
@@ -69,9 +71,11 @@ export default function Reception() {
       <img src={flowerImg} alt="" className="sec-flower fbg-rc9" />
       <img src={flowerImg} alt="" className="sec-flower fbg-rcr" />
 
-      <h2 className="text-center uppercase mt-10 md:mt-12 mb-6 md:mb-8 px-4" style={titleStyle}>Thông Tin Tiệc Cưới</h2>
+      <Reveal as="h2" className="text-center uppercase mt-10 md:mt-12 mb-6 md:mb-8 px-4" style={titleStyle}>
+        <AnimatedText text="Thông Tin Tiệc Cưới" charDelay={45} />
+      </Reveal>
 
-      <div className="flex flex-col items-center gap-4 md:gap-5 text-center" style={{ fontFamily: SERIF, color: PRIMARY }}>
+      <Reveal className="flex flex-col items-center gap-4 md:gap-5 text-center" style={{ fontFamily: SERIF, color: PRIMARY }}>
         <h3 className="font-normal uppercase text-[20px] md:text-[26px]">Tiệc cưới sẽ diễn ra vào lúc:</h3>
         <div className="text-[20px] md:text-[30px]">11:00</div>
 
@@ -108,7 +112,7 @@ export default function Reception() {
         >
           Thêm vào lịch
         </a>
-      </div>
+      </Reveal>
 
       {/* RSVP */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full my-8 md:my-10">

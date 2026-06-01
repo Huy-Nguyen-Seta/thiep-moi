@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import flowerImg from '../assets/flower.webp'
+import AnimatedText from './AnimatedText'
 import './Opening.css'
 
 /* Generate burst particles (petals, leaves, flowers) flying outward */
@@ -87,9 +88,15 @@ export default function Opening({ onOpen }) {
             </svg>
           </div>
 
-          <p className="opening-groom">Đức Linh</p>
-          <span className="opening-amp">&amp;</span>
-          <p className="opening-bride">Linh Đan</p>
+          <p className="opening-groom">
+            <AnimatedText text="Đức Linh" delay={200} charDelay={70} />
+          </p>
+          <span className="opening-amp">
+            <AnimatedText text="&" delay={700} charDelay={0} />
+          </span>
+          <p className="opening-bride">
+            <AnimatedText text="Linh Đan" delay={850} charDelay={70} />
+          </p>
 
           <div className="opening-divider">
             <span className="opening-divider-line" />
@@ -99,8 +106,12 @@ export default function Opening({ onOpen }) {
             <span className="opening-divider-line" />
           </div>
 
-          <p className="opening-date-text">09 tháng 7, 2026</p>
-          <p className="opening-than-moi">Thân Mời</p>
+          <p className="opening-date-text">
+            <AnimatedText text="09 tháng 7, 2026" delay={1400} charDelay={35} />
+          </p>
+          <p className="opening-than-moi">
+            <AnimatedText text="Thân Mời" delay={1900} charDelay={60} />
+          </p>
 
           <button className="opening-btn" onClick={handleOpen}>
             {ripples.map(r => (

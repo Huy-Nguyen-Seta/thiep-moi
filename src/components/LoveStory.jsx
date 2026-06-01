@@ -1,4 +1,6 @@
 import flowerImg from '../assets/flower.webp'
+import AnimatedText from './AnimatedText'
+import Reveal from './Reveal'
 
 /* Ported 1:1 from the original "Hoa Mộc Xanh" (boho-floral-green) timeline (m.xU).
    3-column grid: [time (right) | dot+connecting line | label (left)]. */
@@ -32,14 +34,16 @@ export default function LoveStory() {
     >
       <img src={flowerImg} alt="" className="sec-flower fbg-ti10" />
 
-      <h2 className="uppercase font-bold text-center px-2 md:px-4" style={titleStyle}>Lịch Trình Ngày Cưới</h2>
+      <Reveal as="h2" className="uppercase font-bold text-center px-2 md:px-4" style={titleStyle}>
+        <AnimatedText text="Lịch Trình Ngày Cưới" charDelay={45} />
+      </Reveal>
 
       <ol className="relative mx-auto grid w-full max-w-[460px] grid-cols-[minmax(0,1fr)_16px_minmax(0,1fr)] items-center gap-x-6 md:gap-x-8 gap-y-8 md:gap-y-10">
         {events.map((ev, i) => {
           const isFirst = i === 0
           const isLast = i === events.length - 1
           return (
-            <li key={ev.id} className="contents">
+            <Reveal key={ev.id} as="li" variant="up" delay={`${i * 100}ms`} className="contents">
               <span className="pt-0.5 text-right text-[16px] md:text-[17px] tabular-nums tracking-wide leading-snug" style={{ color: PRIMARY }}>
                 {ev.time}
               </span>
@@ -56,7 +60,7 @@ export default function LoveStory() {
               <span className="pt-0.5 text-left text-[17px] md:text-[19px] font-medium leading-snug" style={{ color: PRIMARY }}>
                 {ev.label}
               </span>
-            </li>
+            </Reveal>
           )
         })}
       </ol>

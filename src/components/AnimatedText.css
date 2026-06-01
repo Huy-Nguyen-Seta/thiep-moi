@@ -1,0 +1,26 @@
+.anim-text {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.anim-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px) scale(0.85);
+  transition: none;   /* animation handles it */
+}
+
+.anim-char--in {
+  animation: charIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes charIn {
+  0%   { opacity: 0; transform: translateY(24px) scale(0.82); }
+  60%  { opacity: 1; transform: translateY(-4px) scale(1.04); }
+  100% { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.anim-space {
+  width: 0.3em;
+}
