@@ -1,0 +1,122 @@
+/* ── Couple composition — ported 1:1 from the original "Hoa Mộc Xanh" theme ── */
+.hero {
+  position: relative;
+  background: transparent;            /* the card itself is #FFFAF7 */
+  padding-top: 210px;                  /* clean white space before the couple (original header pt) */
+  padding-bottom: 16px;                /* original header pb-4 */
+}
+
+.hero-couple {
+  position: relative;
+  width: 320px;
+  height: 440px;
+  margin: 0 auto;
+}
+
+/* Full-bleed jasmine band, vertical centre at 43.75% of the box */
+.hero-band {
+  position: absolute;
+  left: 50%;
+  top: 43.75%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-band img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Large fixed jasmine sprig, lower-left */
+.hero-fixed-flower {
+  position: absolute;
+  top: 503px;
+  left: -181.5px;
+  width: 415px;
+  transform: rotate(-60.58deg);
+  z-index: 0;
+  opacity: 0.9;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-fixed-flower img { width: 100%; height: auto; display: block; }
+
+/* Person = photo + name, absolutely placed */
+.hero-person {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-person--groom {
+  left: 20px;
+  top: -40px;
+  z-index: 20;
+}
+.hero-person--bride {
+  left: 55px;
+  top: 165px;
+  z-index: 30;
+  flex-direction: row-reverse;
+}
+
+/* Tilted photo frame: 5px bronze border, 2:3 ratio */
+.hero-photo {
+  width: 155px;
+  flex-shrink: 0;
+  border: 5px solid var(--photo-border);
+  overflow: hidden;
+  aspect-ratio: 2 / 3;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(28, 48, 20, 0.22);
+}
+.hero-person--groom .hero-photo { transform: rotate(-17deg); }
+.hero-person--bride .hero-photo { transform: rotate(13deg); }
+.hero-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Force GPU layer + subpixel rendering for rotated images */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.hero-name-block {
+  display: flex;
+  flex-direction: column;
+}
+.hero-person--bride .hero-name-block { align-items: flex-end; }
+
+.hero-birthorder {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--ink-grey);
+}
+.hero-name {
+  font-family: var(--font-couple);
+  font-size: 25px;
+  line-height: 1.1;
+  white-space: nowrap;
+  color: var(--green-600);
+}
+
+/* ── Desktop proportions (md) ── */
+@media (min-width: 768px) {
+  .hero { padding-top: 330px; padding-bottom: 32px; }
+  .hero-couple { width: 500px; height: 640px; }
+  .hero-band img { height: 150px; }
+  .hero-band { top: 43.75%; }
+  .hero-fixed-flower { top: 608px; left: -228px; width: 530px; }
+  .hero-person { gap: 16px; }
+  .hero-person--groom { left: 25px; top: -60px; }
+  .hero-person--bride { left: 115px; top: 260px; }
+  .hero-photo { width: 235px; }
+  .hero-birthorder { font-size: 14px; }
+  .hero-name { font-size: 32px; }
+}

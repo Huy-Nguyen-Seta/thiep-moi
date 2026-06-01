@@ -1,0 +1,175 @@
+.app {
+  position: relative;
+  min-height: 100vh;
+}
+
+.main-content {
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease 0.2s;
+  background: #FFFAF7;
+}
+
+.main-content--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Narrow single-column invitation, centered like the original template */
+.main-content-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #FFFAF7;
+  box-shadow: 0 0 80px rgba(28, 48, 20, 0.06);
+  overflow: hidden;
+}
+
+/* All section content sits above the decorative floral layer.
+   Card is 900px wide (like the original) but the readable content column is
+   capped at 560px and centred; only the decorative flower layer fills the full card. */
+.main-content-inner > section {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Hero + ported sections span the full card width (their content centres itself);
+   only specific inner elements (gallery grid, map) are capped at 560 inside. */
+.main-content-inner > .hero,
+.main-content-inner > #thong-tin,
+.main-content-inner > #anh-cuoi,
+.main-content-inner > #tiec-cuoi,
+.main-content-inner > #dia-diem,
+.main-content-inner > #lich-trinh,
+.main-content-inner > #so-luu-but,
+.main-content-inner > #mung-cuoi {
+  max-width: 100%;
+}
+
+/* ── Floral border running down both column edges ── */
+.flower-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.flower-bg-item {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Flowers anchored INSIDE a section (move with that section's content).
+   Sit behind the section's text (z-index:-1) but above the cream card. */
+.sec-flower {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+  will-change: transform;
+}
+
+/* ── Thông tin: big left faded (was fbg-5) ── */
+.fbg-wi5 { top: 388px; left: -110px; width: 750px; opacity: .15; transform: rotate(132deg); }
+@media (min-width: 768px)  { .fbg-wi5 { top: 188px; left: -140px; width: 990px; } }
+@media (min-width: 1024px) { .fbg-wi5 { top: 298px; left: -170px; width: 1185px; } }
+
+/* ── Thông tin: right small jasmine (was fbg-6) ── */
+.fbg-wi6 { top: 514px; right: -142px; width: 290px; transform: rotate(-36deg) scaleX(-1); }
+@media (min-width: 768px)  { .fbg-wi6 { top: 318px; right: -190px; width: 390px; } }
+@media (min-width: 1024px) { .fbg-wi6 { top: 458px; right: -230px; width: 460px; } }
+
+/* ── Album: right faded jasmine (was fbg-7) ── */
+.fbg-al7 { top: 85px; right: -340px; width: 750px; opacity: .15; transform: rotate(122deg); }
+@media (min-width: 768px)  { .fbg-al7 { right: -520px; width: 1005px; } }
+@media (min-width: 1024px) { .fbg-al7 { right: -550px; width: 1215px; } }
+
+/* ── Tiệc cưới: prominent left jasmine sprig (was fbg-8) ── */
+.fbg-rc8 { top: -65px; left: -388px; width: 558px; transform: rotate(0deg); }
+@media (min-width: 768px)  { .fbg-rc8 { left: -420px; width: 720px; } }
+@media (min-width: 1024px) { .fbg-rc8 { left: -500px; width: 860px; } }
+
+/* ── Tiệc cưới: big left faded jasmine (covers below the calendar) ── */
+.fbg-rc9 { top: 300px; left: -290px; width: 1062px; opacity: .15; transform: rotate(128deg); }
+@media (min-width: 768px)  { .fbg-rc9 { left: -390px; width: 1425px; } }
+@media (min-width: 1024px) { .fbg-rc9 { left: -470px; width: 1725px; } }
+
+/* ── Tiệc cưới: right faded jasmine (covers below the calendar, right side; rot ~20° shows blooms) ── */
+.fbg-rcr { top: 320px; right: -150px; width: 460px; opacity: .15; transform: rotate(20deg); }
+@media (min-width: 768px)  { .fbg-rcr { right: -200px; width: 600px; } }
+@media (min-width: 1024px) { .fbg-rcr { right: -240px; width: 700px; } }
+
+/* ── Địa điểm: right small jasmine (was fbg-11) ── */
+.fbg-lo11 { top: 40px; right: -142px; width: 290px; transform: rotate(-36deg) scaleX(-1); }
+@media (min-width: 768px)  { .fbg-lo11 { right: -190px; width: 390px; } }
+@media (min-width: 1024px) { .fbg-lo11 { right: -230px; width: 460px; } }
+
+/* ── Lịch trình: lower-left jasmine (was fbg-10) ── */
+.fbg-ti10 { top: 30px; left: -35%; width: 297px; transform: rotate(176deg); }
+@media (min-width: 768px)  { .fbg-ti10 { width: 400px; } }
+@media (min-width: 1024px) { .fbg-ti10 { width: 480px; } }
+
+/* ── Sổ lưu bút: right faded jasmine (rot ~20° shows blooms) ── */
+.fbg-gb { top: 180px; right: -150px; width: 460px; opacity: .18; transform: rotate(20deg); }
+@media (min-width: 768px)  { .fbg-gb { right: -210px; width: 620px; } }
+@media (min-width: 1024px) { .fbg-gb { right: -250px; width: 720px; } }
+
+/* ── Phong bao: faint jasmine top-right ── */
+.fbg-env { top: -30px; right: -130px; width: 360px; opacity: .15; transform: rotate(20deg); }
+@media (min-width: 768px)  { .fbg-env { right: -180px; width: 480px; } }
+@media (min-width: 1024px) { .fbg-env { right: -210px; width: 560px; } }
+
+/* ── Flower positions/sizes — exact mobile / md(≥768) / lg(≥1024) values from the original ── */
+.fbg-1  { top: -327px; left: 111.5px; width: 622.77px; transform: rotate(-0.76deg); }
+.fbg-2  { top: 5px;    left: -83px;   width: 450px;    opacity: .2; transform: rotate(142deg) scaleX(-1); }
+.fbg-3  { top: 503px;  left: -181.5px; width: 415.05px; transform: rotate(-60.58deg); }
+.fbg-4  { top: 302px;  right: -220px; width: 610px;    opacity: .15; transform: rotate(152deg); }
+.fbg-5  { top: 1054px; left: -110px;  width: 750px;    opacity: .15; transform: rotate(132deg); }
+.fbg-6  { top: 1180px; right: -142px; width: 290px;    transform: rotate(-36deg) scaleX(-1); }
+.fbg-7  { top: 1848px; right: -220px; width: 750px;    opacity: .15; transform: rotate(122deg); }
+.fbg-8  { top: 2350px; left: -388.5px; width: 558.77px; transform: rotate(0deg); }
+.fbg-9  { top: 2545px; left: -290px;  width: 1062px;   opacity: .15; transform: rotate(128deg); }
+.fbg-10 { top: 4060px; left: -35%;    width: 297px;    transform: rotate(176deg); }
+.fbg-11 { top: 2960px; right: -142px; width: 290px;    transform: rotate(-36deg) scaleX(-1); }
+.fbg-12 { bottom: 100px; right: -400px; width: 600px;  opacity: .2; transform: rotate(139deg); }
+
+@media (min-width: 768px) {
+  .fbg-1  { top: -390px; left: 130px;  width: 760px; }
+  .fbg-2  { top: 18px;   left: -66px;  width: 507px; }
+  .fbg-3  { top: 608px;  left: -228px; width: 530px; }
+  .fbg-4  { top: 360px;  right: -300px; width: 800px; }
+  .fbg-5  { top: 1190px; left: -140px; width: 990px; }
+  .fbg-6  { top: 1320px; right: -190px; width: 390px; }
+  .fbg-7  { top: 2020px; right: -330px; width: 1005px; }
+  .fbg-8  { top: 2550px; left: -420px; width: 720px; }
+  .fbg-9  { top: 2720px; left: -390px; width: 1425px; }
+  .fbg-10 { top: 3880px; left: -35%;   width: 400px; }
+  .fbg-11 { top: 3150px; right: -190px; width: 390px; }
+  .fbg-12 { width: 780px; }
+}
+
+@media (min-width: 1024px) {
+  .fbg-1  { top: -470px; left: 170px;  width: 900px; }
+  .fbg-2  { top: 24px;   left: -44px;  width: 608px; }
+  .fbg-3  { top: 700px;  left: -278px; width: 650px; }
+  .fbg-4  { top: 410px;  right: -360px; width: 960px; }
+  .fbg-5  { top: 1300px; left: -170px; width: 1185px; }
+  .fbg-6  { top: 1460px; right: -230px; width: 460px; }
+  .fbg-7  { top: 2180px; right: -350px; width: 1215px; }
+  .fbg-8  { top: 2750px; left: -500px; width: 860px; }
+  .fbg-9  { top: 2900px; left: -470px; width: 1725px; }
+  .fbg-10 { top: 4080px; left: -35%;   width: 480px; }
+  .fbg-11 { top: 3340px; right: -230px; width: 460px; }
+}
+
+@media (max-width: 640px) {
+  .main-content-inner { box-shadow: none; }
+}
