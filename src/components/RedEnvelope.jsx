@@ -17,10 +17,9 @@ const titleStyle = {
 }
 
 const accounts = [
-  { label: 'Chú Rể - Trần Đức Linh', bank: 'VietinBank', bankCode: 'ICB', number: '8866886688', name: 'TRAN DUC LINH' },
-  { label: 'Cô Dâu - Trương Ngọc Linh Đan', bank: 'BIDV', bankCode: 'BIDV', number: '6665558888', name: 'TRUONG NGOC LINH DAN' },
+  { label: 'Cô Dâu - Trần Đức Linh',        qr: '/photos/qr-groom.jpg', bank: 'VPBank', number: '0941735992',   name: 'TRAN DUC LINH' },
+  { label: 'Chú Rể - Trương Ngọc Linh Đan',  qr: '/photos/qr-bride.jpg', bank: 'MB Bank', number: '201103221103', name: 'TRUONG NGOC LINH DAN' },
 ]
-const qrUrl = (a) => `https://img.vietqr.io/image/${a.bankCode}-${a.number}-qr_only.png?accountName=${encodeURIComponent(a.name)}`
 
 /* Greek-key (fret) gold corner bracket */
 function CornerBracket({ className, flipX, flipY }) {
@@ -124,14 +123,14 @@ export default function RedEnvelope() {
                 <div key={a.number} className="flex flex-col items-center text-center">
                   <p className="text-sm md:text-base font-medium mb-3">{a.label}</p>
                   <div className="rounded-xl bg-white p-2" style={{ border: `2px solid ${PRIMARY}20` }}>
-                    <img src={qrUrl(a)} alt={`QR ${a.bank}`} className="w-36 h-36 md:w-44 md:h-44 object-contain" loading="lazy" />
+                    <img src={a.qr} alt={`QR ${a.bank}`} className="w-36 h-36 md:w-44 md:h-44 object-contain" loading="lazy" />
                   </div>
                   <p className="mt-3 text-sm">{a.bank}</p>
                   <p className="text-sm font-mono">{a.number}</p>
                   <p className="text-sm font-semibold">{a.name}</p>
                   <a
-                    href={qrUrl(a)}
-                    download={`QR-${a.bankCode}-${a.number}.png`}
+                    href={a.qr}
+                    download={`QR-${a.bank}.jpg`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 inline-flex items-center gap-1 rounded-md border px-3 py-1 text-xs hover:opacity-70"

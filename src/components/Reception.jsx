@@ -73,7 +73,7 @@ export default function Reception() {
 
       <div className="flex flex-col items-center gap-4 md:gap-5 text-center" style={{ fontFamily: SERIF, color: PRIMARY }}>
         <h3 className="font-normal uppercase text-[20px] md:text-[26px]">Tiệc cưới sẽ diễn ra vào lúc:</h3>
-        <div className="text-[20px] md:text-[30px]">18:00</div>
+        <div className="text-[20px] md:text-[30px]">11:00</div>
 
         <div className="flex items-center gap-6">
           <span className="text-[12px] md:text-[16px] uppercase text-right" style={{ fontWeight: 600 }}>Thứ Ba</span>
