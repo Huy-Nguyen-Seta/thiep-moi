@@ -26,19 +26,21 @@
   100% { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
 }
 
-/* ── 'grand': cinematic blur-rise for hero / cover names ── */
+/* ── 'grand': cinematic rise for hero / cover names ──
+   GPU-only (transform + opacity, NO animated blur) so large script glyphs
+   stay perfectly smooth at load — blur on big text causes per-frame repaints. */
 .anim-text--grand .anim-char {
-  transform: translateY(46px) scale(0.55);
-  filter: blur(12px);
+  transform: translateY(42px) scale(0.6);
+  will-change: transform, opacity;
 }
 .anim-text--grand .anim-char--in {
-  animation: charGrand 1s cubic-bezier(0.18, 0.78, 0.24, 1) forwards;
+  animation: charGrand 0.95s cubic-bezier(0.18, 0.78, 0.24, 1) forwards;
 }
 @keyframes charGrand {
-  0%   { opacity: 0; transform: translateY(46px) scale(0.55); filter: blur(12px); }
-  55%  { opacity: 1; transform: translateY(-8px) scale(1.07); filter: blur(0); }
-  78%  { transform: translateY(2px) scale(0.99); }
-  100% { opacity: 1; transform: translateY(0)    scale(1); filter: blur(0); }
+  0%   { opacity: 0; transform: translateY(42px) scale(0.6); }
+  55%  { opacity: 1; transform: translateY(-7px) scale(1.06); }
+  78%  {             transform: translateY(2px)  scale(0.99); }
+  100% { opacity: 1; transform: translateY(0)    scale(1); }
 }
 
 /* ── 'sides' mode: characters glide in alternately from left & right ──
