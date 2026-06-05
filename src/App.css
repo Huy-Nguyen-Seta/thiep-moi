@@ -63,6 +63,7 @@
   position: absolute;
   height: auto;
   pointer-events: none;
+  scale: 1.32;   /* enlarge background jasmine (composes with rotate + sway) */
   will-change: transform, translate;
   animation: flowerSway 9s ease-in-out infinite;
 }
@@ -75,6 +76,7 @@
   pointer-events: none;
   user-select: none;
   z-index: -1;
+  scale: 1.32;   /* enlarge section jasmine (composes with rotate + sway) */
   will-change: transform, translate;
   animation: flowerSway 10s ease-in-out infinite;
 }
