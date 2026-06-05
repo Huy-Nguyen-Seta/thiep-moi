@@ -6,6 +6,7 @@ import Gallery from './components/Gallery'
 import Reception from './components/Reception'
 import Location from './components/Location'
 import LoveStory from './components/LoveStory'
+import RSVP from './components/RSVP'
 import Guestbook from './components/Guestbook'
 import RedEnvelope from './components/RedEnvelope'
 import AudioPlayer from './components/AudioPlayer'
@@ -47,6 +48,7 @@ function App() {
           <Reception />
           <Location />
           <LoveStory />
+          <RSVP />
           <Guestbook />
           <RedEnvelope />
           <Footer />

@@ -35,7 +35,7 @@ export default function LoveStory() {
       <img src={flowerImg} alt="" className="sec-flower fbg-ti10" />
 
       <Reveal as="h2" className="uppercase font-bold text-center px-2 md:px-4" style={titleStyle}>
-        <AnimatedText text="Lịch Trình Ngày Cưới" charDelay={45} />
+        <AnimatedText text="Lịch Trình Ngày Cưới" charDelay={42} from="sides" />
       </Reveal>
 
       <ol className="relative mx-auto grid w-full max-w-[460px] grid-cols-[minmax(0,1fr)_16px_minmax(0,1fr)] items-center gap-x-6 md:gap-x-8 gap-y-8 md:gap-y-10">

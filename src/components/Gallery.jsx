@@ -62,7 +62,7 @@ export default function Gallery() {
       className="relative flex flex-col items-center px-6 md:px-10 pt-10 md:pt-14 pb-10 md:pb-12 overflow-visible z-10"
     >
       <Reveal as="h2" className="uppercase font-bold text-center" style={titleStyle}>
-        <AnimatedText text="Album Ảnh Cưới" charDelay={50} />
+        <AnimatedText text="Album Ảnh Cưới" charDelay={45} from="sides" />
       </Reveal>
 
       <div className="mt-6 w-full px-2 max-w-[340px] sm:max-w-[390px] md:max-w-[560px] relative z-10">

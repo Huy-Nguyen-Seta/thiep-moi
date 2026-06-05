@@ -5,7 +5,6 @@ import Reveal from './Reveal'
 /* Ported 1:1 from the original "Hoa Mộc Xanh" (boho-floral-green) reception (m.zp) + mini calendar (tj). */
 
 const PRIMARY = '#30530F'
-const CREAM = '#FFFAF7'
 const SERIF = '"Baskerville", "Times New Roman", serif'
 const CAL_BORDER = 'color-mix(in srgb, #30530F 27%, transparent)'
 
@@ -72,7 +71,7 @@ export default function Reception() {
       <img src={flowerImg} alt="" className="sec-flower fbg-rcr" />
 
       <Reveal as="h2" className="text-center uppercase mt-10 md:mt-12 mb-6 md:mb-8 px-4" style={titleStyle}>
-        <AnimatedText text="Thông Tin Tiệc Cưới" charDelay={45} />
+        <AnimatedText text="Thông Tin Tiệc Cưới" charDelay={42} from="sides" />
       </Reveal>
 
       <Reveal className="flex flex-col items-center gap-4 md:gap-5 text-center" style={{ fontFamily: SERIF, color: PRIMARY }}>
@@ -113,17 +112,6 @@ export default function Reception() {
           Thêm vào lịch
         </a>
       </Reveal>
-
-      {/* RSVP */}
-      <div className="relative z-10 flex flex-col items-center justify-center w-full my-8 md:my-10">
-        <a
-          href="#so-luu-but"
-          className="inline-flex items-center justify-center rounded-[10px] px-6 py-2 font-semibold uppercase tracking-wider transition-transform hover:scale-[1.03]"
-          style={{ backgroundColor: PRIMARY, color: CREAM, fontFamily: SERIF }}
-        >
-          Xác Nhận
-        </a>
-      </div>
     </section>
   )
 }

@@ -23,6 +23,7 @@ const navLinks = [
   { href: '#tiec-cuoi', label: 'Tiệc cưới' },
   { href: '#dia-diem', label: 'Địa điểm' },
   { href: '#lich-trinh', label: 'Lịch trình' },
+  { href: '#xac-nhan-tham-du', label: 'Xác nhận' },
   { href: '#so-luu-but', label: 'Lưu bút' },
 ]
 

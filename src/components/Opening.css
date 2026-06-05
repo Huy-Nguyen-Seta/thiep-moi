@@ -117,21 +117,30 @@
 .opening-groom,
 .opening-bride {
   font-family: 'Pinyon Script', 'Great Vibes', cursive;
-  font-size: clamp(2.8rem, 8vw, 4.2rem);
+  font-size: clamp(3.4rem, 10.5vw, 5.4rem);
   font-weight: 400;
   color: #30530F;
   letter-spacing: 1px;
-  line-height: 1.2;
+  line-height: 1.18;
+  animation: nameGlow 3.6s ease-in-out infinite;
 }
-.opening-bride { margin-bottom: 16px; }
+.opening-groom { animation-delay: 2.4s; }
+.opening-bride { margin-bottom: 18px; animation-delay: 2.9s; }
+
+/* Soft glow that breathes once the names have settled (text-shadow inherits to chars) */
+@keyframes nameGlow {
+  0%, 100% { text-shadow: 0 0 0 rgba(120, 168, 106, 0); }
+  50%      { text-shadow: 0 0 22px rgba(120, 168, 106, 0.45); }
+}
+
 .opening-amp {
   font-family: 'Pinyon Script', 'Great Vibes', cursive;
   font-style: normal;
   font-weight: 400;
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   color: #5C8850;
   display: block;
-  margin: 2px 0;
+  margin: 4px 0;
   line-height: 1;
 }
 
@@ -153,19 +162,19 @@
 /* Date & invitation */
 .opening-date-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #4A6838;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
 }
 .opening-than-moi {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 1.15rem;
-  font-weight: 300;
+  font-size: 1.45rem;
+  font-weight: 400;
   color: #618050;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 /* Ripple effect */
@@ -195,10 +204,10 @@
   background: #2c5320;
   color: white;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: 1px;
-  padding: 14px 56px;
+  padding: 15px 60px;
   border-radius: 100px;
   box-shadow: 0 5px 20px rgba(20,40,12,0.4);
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
@@ -309,7 +318,9 @@
   .opening-flower--br { width: 145px; bottom: -36px; right: -28px; }
   .opening-content { padding: 52px 20px 36px; }
   .opening-heart-icon { width: 44px; height: 44px; margin-bottom: 10px; }
-  .opening-groom, .opening-bride { font-size: clamp(2rem, 9.5vw, 2.8rem); }
-  .opening-btn { padding: 11px 28px; font-size: 0.95rem; }
+  .opening-groom, .opening-bride { font-size: clamp(2.6rem, 13vw, 3.6rem); }
+  .opening-amp { font-size: 2.3rem; }
+  .opening-than-moi { font-size: 1.3rem; }
+  .opening-btn { padding: 12px 34px; font-size: 1.05rem; }
   .opening-than-moi { margin-bottom: 18px; }
 }

@@ -65,6 +65,7 @@
 
 /* Tilted photo frame: 5px bronze border, 2:3 ratio */
 .hero-photo {
+  position: relative;
   width: 155px;
   flex-shrink: 0;
   border: 5px solid var(--photo-border);
@@ -76,13 +77,69 @@
 .hero-person--groom .hero-photo { transform: rotate(-17deg); }
 .hero-person--bride .hero-photo { transform: rotate(13deg); }
 
-/* Fade-in animations that compose with the parent rotate via opacity only */
-@keyframes heroPhotoIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* Dramatic pendulum entrance: each photo swoops in from far off-screen corner,
+   over-swings past its resting tilt, swings back, then settles
+   (groom −17°, bride +13°). */
+@keyframes heroPhotoInGroom {
+  0%   { opacity: 0; transform: translate(-90px, -70px) rotate(-52deg) scale(0.55); }
+  45%  { opacity: 1; transform: translate(8px, 6px)     rotate(-6deg)  scale(1.1); }
+  68%  { opacity: 1; transform: translate(-2px, -1px)   rotate(-22deg) scale(0.98); }
+  84%  {             transform: translate(0, 0)         rotate(-14deg) scale(1.01); }
+  100% { opacity: 1; transform: translate(0, 0)         rotate(-17deg) scale(1); }
 }
-.hero-photo--animate-groom { opacity: 0; animation: heroPhotoIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; }
-.hero-photo--animate-bride  { opacity: 0; animation: heroPhotoIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.55s forwards; }
+@keyframes heroPhotoInBride {
+  0%   { opacity: 0; transform: translate(90px, -70px) rotate(50deg)  scale(0.55); }
+  45%  { opacity: 1; transform: translate(-8px, 6px)   rotate(4deg)   scale(1.1); }
+  68%  { opacity: 1; transform: translate(2px, -1px)   rotate(18deg)  scale(0.98); }
+  84%  {             transform: translate(0, 0)        rotate(10deg)  scale(1.01); }
+  100% { opacity: 1; transform: translate(0, 0)        rotate(13deg)  scale(1); }
+}
+/* Entrance animates `transform`; the gentle tilt-wobble below animates the
+   independent `rotate` property so the two compose without overriding. */
+.hero-photo--animate-groom {
+  opacity: 0;
+  animation:
+    heroPhotoInGroom 1.25s cubic-bezier(0.3, 1.3, 0.5, 1) 0.3s forwards,
+    photoWobble 5s ease-in-out 1.7s infinite;
+}
+.hero-photo--animate-bride {
+  opacity: 0;
+  animation:
+    heroPhotoInBride 1.25s cubic-bezier(0.3, 1.3, 0.5, 1) 0.55s forwards,
+    photoWobble 5.6s ease-in-out 2.1s infinite reverse;
+}
+@keyframes photoWobble {
+  0%, 100% { rotate: 0deg; }
+  50%      { rotate: 3.5deg; }
+}
+
+/* Soft glass "shine" sweeping diagonally across each photo */
+.hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 65%);
+  transform: translateX(-160%);
+  animation: heroShine 6s ease-in-out 2s infinite;
+}
+.hero-person--bride .hero-photo::after { animation-delay: 3.4s; }
+@keyframes heroShine {
+  0%        { transform: translateX(-160%); }
+  18%, 100% { transform: translateX(160%); }
+}
+
+/* Gentle continuous "breathing" float so the couple never feels frozen */
+.hero-person--groom { animation: heroFloat 6s ease-in-out 1.7s infinite; }
+.hero-person--bride { animation: heroFloat 7s ease-in-out 2.1s infinite; }
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
 
 .hero-photo img {
   width: 100%; height: 100%;
@@ -103,13 +160,13 @@
 
 .hero-birthorder {
   font-family: var(--font-serif);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   color: var(--ink-grey);
 }
 .hero-name {
   font-family: var(--font-couple);
-  font-size: clamp(18px, 5.5vw, 25px);
+  font-size: clamp(26px, 8vw, 36px);
   line-height: 1.1;
   white-space: nowrap;
   color: var(--green-600);
@@ -126,6 +183,6 @@
   .hero-person--groom { left: 25px; top: -60px; }
   .hero-person--bride { left: 115px; top: 260px; }
   .hero-photo { width: 235px; }
-  .hero-birthorder { font-size: 14px; }
-  .hero-name { font-size: 32px; }
+  .hero-birthorder { font-size: 16px; }
+  .hero-name { font-size: 46px; }
 }

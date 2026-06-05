@@ -1,151 +1,176 @@
 import { useState } from 'react'
-import { useScrollReveal } from '../hooks/useScrollReveal'
+import flowerImg from '../assets/flower.webp'
+import { SHEET_API_URL } from '../config.js'
 import './RSVP.css'
 
-const initialForm = { name: '', attendance: 'yes', guests: '1', message: '' }
+/* Xác nhận tham dự → lưu vào Google Sheet (tab riêng "Xac nhan tham du")
+   qua Apps Script. Fallback localStorage khi chưa cấu hình SHEET_API_URL. */
+
+const PRIMARY = '#30530F'
+const SERIF = '"Baskerville", "Times New Roman", serif'
+
+const titleStyle = {
+  color: PRIMARY,
+  fontFamily: '"Times New Roman", serif',
+  fontSize: '24px',
+  fontWeight: 700,
+  letterSpacing: '1px',
+}
+
+const OPTIONS = [
+  { value: 'yes',   label: 'Tôi sẽ tham gia' },
+  { value: 'no',    label: 'Rất tiếc, tôi bận mất rồi' },
+  { value: 'maybe', label: 'Tôi sẽ nhắn lại sau nhé' },
+]
+
+const LS_KEY = 'wedding_rsvp'
+const useSheet = () => SHEET_API_URL && SHEET_API_URL.startsWith('https://')
+
+function nowStr() {
+  const d = new Date(), p = n => String(n).padStart(2, '0')
+  return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}`
+}
+
+async function postRSVP(payload) {
+  if (useSheet()) {
+    await fetch(SHEET_API_URL, { method: 'POST', body: JSON.stringify(payload) })
+    return
+  }
+  // localStorage fallback (offline mode)
+  const saved = localStorage.getItem(LS_KEY)
+  const list = saved ? JSON.parse(saved) : []
+  localStorage.setItem(LS_KEY, JSON.stringify([payload, ...list]))
+}
 
 export default function RSVP() {
-  const [form, setForm] = useState(initialForm)
-  const [submitted, setSubmitted] = useState(false)
-  const [errors, setErrors] = useState({})
-  const headerRef = useScrollReveal()
-  const formRef = useScrollReveal()
+  const [name, setName] = useState('')
+  const [attendance, setAttendance] = useState('yes')
+  const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
 
-  function validate() {
-    const e = {}
-    if (!form.name.trim()) e.name = 'Vui lòng nhập họ tên'
-    return e
-  }
-
-  function handleChange(e) {
-    const { name, value } = e.target
-    setForm(f => ({ ...f, [name]: value }))
-    if (errors[name]) setErrors(er => ({ ...er, [name]: '' }))
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    const errs = validate()
-    if (Object.keys(errs).length) { setErrors(errs); return }
-    setSubmitted(true)
+    if (!name.trim()) { setError('Vui lòng nhập họ và tên'); return }
+    setSending(true); setError('')
+    const opt = OPTIONS.find(o => o.value === attendance)
+    const payload = {
+      type: 'rsvp',
+      id: Date.now(),
+      name: name.trim(),
+      attendance,
+      attendanceLabel: opt ? opt.label : '',
+      message: message.trim(),
+      time: nowStr(),
+    }
+    try {
+      await postRSVP(payload)
+      setSuccess(true)
+    } catch {
+      setError('Gửi thất bại, vui lòng thử lại.')
+    } finally {
+      setSending(false)
+    }
   }
+
+  function resetForm() {
+    setName(''); setAttendance('yes'); setMessage('')
+    setSuccess(false); setError('')
+  }
+
+  const inputStyle = { borderColor: '#30530F40', color: PRIMARY, backgroundColor: '#30530F0a', fontFamily: SERIF }
 
   return (
-    <section className="rsvp" id="xac-nhan">
-      <div className="container">
-        <div className="section-header reveal" ref={headerRef}>
-          <span className="section-label">Xác nhận</span>
-          <h2 className="section-title">Tham Dự Cùng Chúng Tôi</h2>
-          <div className="section-divider">
-            <span className="section-divider-icon">✦</span>
-          </div>
-          <p className="section-desc">Kính mong quý vị xác nhận tham dự để chúng tôi chuẩn bị chu đáo nhất</p>
-        </div>
+    <section
+      id="xac-nhan-tham-du"
+      className="relative z-10 px-6 md:px-10 pt-10 md:pt-12 pb-2"
+      style={{ color: PRIMARY, fontFamily: SERIF }}
+    >
+      <img src={flowerImg} alt="" className="sec-flower fbg-rsvp" />
 
-        <div className="rsvp-wrap reveal" ref={formRef}>
-          {submitted ? (
-            <div className="rsvp-success">
-              <div className="rsvp-success-icon">🎉</div>
-              <h3 className="rsvp-success-title">Cảm ơn bạn!</h3>
-              <p className="rsvp-success-msg">
-                {form.attendance === 'yes'
-                  ? `Chúng tôi rất vui khi ${form.name} sẽ tham dự. Hẹn gặp lại trong ngày vui!`
-                  : `Cảm ơn ${form.name} đã phản hồi. Chúng tôi sẽ nhớ bạn trong ngày đặc biệt này.`
-                }
+      <div className="text-center">
+        <h2 className="uppercase" style={titleStyle}>Xác Nhận Tham Dự</h2>
+        <p className="mt-2 italic text-sm md:text-base max-w-[460px] mx-auto" style={{ color: PRIMARY }}>
+          Hãy xác nhận tham dự để chúng mình chuẩn bị đón tiếp thật chu đáo nhé
+        </p>
+      </div>
+
+      <div className="mt-6 mx-auto w-full max-w-full md:max-w-[600px]">
+        <div className="rounded-2xl border p-6 md:p-8 shadow-sm" style={{ borderColor: '#30530F40', backgroundColor: '#30530F08' }}>
+          {success ? (
+            <div className="text-center py-6">
+              <div className="rsvp-check mx-auto" aria-hidden="true">✓</div>
+              <h3 className="mt-4 text-lg md:text-xl font-semibold" style={{ color: PRIMARY }}>
+                Cảm ơn {name || 'bạn'}!
+              </h3>
+              <p className="mt-2 italic text-sm md:text-base" style={{ color: PRIMARY }}>
+                {attendance === 'yes'
+                  ? 'Chúng mình rất vui khi được đón tiếp bạn trong ngày trọng đại. Hẹn gặp lại nhé!'
+                  : attendance === 'maybe'
+                    ? 'Cảm ơn bạn đã phản hồi. Mong sớm nhận được tin vui từ bạn!'
+                    : 'Cảm ơn bạn đã phản hồi. Chúng mình sẽ nhớ bạn trong ngày đặc biệt này.'}
               </p>
-              <button className="rsvp-reset" onClick={() => { setSubmitted(false); setForm(initialForm) }}>
-                Gửi lại
+              <button
+                type="button"
+                onClick={resetForm}
+                className="mt-5 text-sm underline underline-offset-4 transition-opacity hover:opacity-70"
+                style={{ color: PRIMARY }}
+              >
+                Gửi xác nhận khác
               </button>
             </div>
           ) : (
-            <form className="rsvp-form" onSubmit={handleSubmit} noValidate>
-              <div className="rsvp-field">
-                <label className="rsvp-label">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                  </svg>
-                  Họ và Tên <span className="rsvp-required">*</span>
-                </label>
+            <form onSubmit={handleSubmit} noValidate>
+              <div className="mb-4">
                 <input
                   type="text"
-                  name="name"
-                  className={`rsvp-input ${errors.name ? 'rsvp-input--error' : ''}`}
-                  placeholder="Nhập họ và tên của bạn"
-                  value={form.name}
-                  onChange={handleChange}
+                  value={name}
+                  onChange={e => { setName(e.target.value); if (error) setError('') }}
+                  placeholder="Họ và tên*"
+                  className="w-full rounded-lg border px-4 py-3 text-sm focus:outline-none"
+                  style={inputStyle}
+                  required
                 />
-                {errors.name && <span className="rsvp-error">{errors.name}</span>}
               </div>
 
-              <div className="rsvp-field">
-                <label className="rsvp-label">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                  Bạn có tham dự không?
-                </label>
-                <div className="rsvp-radio-group">
-                  {[
-                    { value: 'yes', label: '✓ Có, tôi sẽ tham dự', cls: 'yes' },
-                    { value: 'no', label: '✗ Rất tiếc, tôi không thể', cls: 'no' },
-                  ].map(opt => (
-                    <label key={opt.value} className={`rsvp-radio ${form.attendance === opt.value ? `rsvp-radio--${opt.cls} rsvp-radio--active` : ''}`}>
-                      <input
-                        type="radio"
-                        name="attendance"
-                        value={opt.value}
-                        checked={form.attendance === opt.value}
-                        onChange={handleChange}
-                      />
-                      {opt.label}
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {form.attendance === 'yes' && (
-                <div className="rsvp-field">
-                  <label className="rsvp-label">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                      <circle cx="9" cy="7" r="4"/>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                    Số người tham dự
+              <div className="rsvp-options mb-4">
+                {OPTIONS.map(opt => (
+                  <label
+                    key={opt.value}
+                    className={`rsvp-option ${attendance === opt.value ? 'rsvp-option--active' : ''}`}
+                  >
+                    <input
+                      type="radio"
+                      name="attendance"
+                      value={opt.value}
+                      checked={attendance === opt.value}
+                      onChange={() => setAttendance(opt.value)}
+                    />
+                    <span className="rsvp-dot" aria-hidden="true" />
+                    <span>{opt.label}</span>
                   </label>
-                  <select name="guests" className="rsvp-select" value={form.guests} onChange={handleChange}>
-                    {['1', '2', '3', '4', '5+'].map(n => (
-                      <option key={n} value={n}>{n} người</option>
-                    ))}
-                  </select>
-                </div>
-              )}
-
-              <div className="rsvp-field">
-                <label className="rsvp-label">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                  Lời nhắn (tuỳ chọn)
-                </label>
-                <textarea
-                  name="message"
-                  className="rsvp-textarea"
-                  placeholder="Gửi lời chúc mừng đến cô dâu & chú rể..."
-                  rows={4}
-                  value={form.message}
-                  onChange={handleChange}
-                />
+                ))}
               </div>
 
-              <button type="submit" className="rsvp-submit">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="22" y1="2" x2="11" y2="13"/>
-                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                </svg>
-                Gửi Xác Nhận
+              <textarea
+                value={message}
+                onChange={e => setMessage(e.target.value)}
+                placeholder="Lời nhắn (tuỳ chọn)"
+                rows={4}
+                className="w-full rounded-lg border px-4 py-3 text-sm focus:outline-none"
+                style={{ ...inputStyle, resize: 'none' }}
+              />
+
+              {error && <p className="mt-3 text-sm text-red-500">{error}</p>}
+
+              <button
+                type="submit"
+                disabled={sending}
+                className="mt-5 w-full rounded-[10px] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-transform hover:scale-[1.02] disabled:opacity-60"
+                style={{ backgroundColor: PRIMARY }}
+              >
+                {sending ? 'Đang gửi…' : 'Gửi xác nhận'}
               </button>
             </form>
           )}

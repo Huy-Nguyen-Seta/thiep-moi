@@ -8,6 +8,8 @@ import './AnimatedText.css'
      style     – inline style on wrapper
      delay     – base delay before first char (ms), default 0
      charDelay – delay between each char (ms), default 60
+     from      – entry direction: 'up' (default) | 'sides'
+                 'sides' = characters glide in alternately from left & right
      as        – wrapper tag, default "span"
 */
 export default function AnimatedText({
@@ -16,6 +18,7 @@ export default function AnimatedText({
   style,
   delay = 0,
   charDelay = 60,
+  from = 'up',
   as: Tag = 'span',
 }) {
   const ref = useRef(null)
@@ -35,17 +38,22 @@ export default function AnimatedText({
   const chars = Array.from(text)   // handles multi-byte (e.g. Vietnamese)
 
   return (
-    <Tag ref={ref} className={`anim-text ${className}`} style={style} aria-label={text}>
-      {chars.map((ch, i) => (
-        <span
-          key={i}
-          aria-hidden="true"
-          className={`anim-char ${visible ? 'anim-char--in' : ''} ${ch === ' ' ? 'anim-space' : ''}`}
-          style={{ animationDelay: `${delay + i * charDelay}ms` }}
-        >
-          {ch === ' ' ? ' ' : ch}
-        </span>
-      ))}
+    <Tag ref={ref} className={`anim-text anim-text--${from} ${className}`} style={style} aria-label={text}>
+      {chars.map((ch, i) => {
+        // For 'sides' mode, alternate the incoming direction per character
+        const dirClass =
+          from === 'sides' ? (i % 2 === 0 ? 'anim-char--from-left' : 'anim-char--from-right') : ''
+        return (
+          <span
+            key={i}
+            aria-hidden="true"
+            className={`anim-char ${dirClass} ${visible ? 'anim-char--in' : ''} ${ch === ' ' ? 'anim-space' : ''}`}
+            style={{ animationDelay: `${delay + i * charDelay}ms` }}
+          >
+            {ch === ' ' ? ' ' : ch}
+          </span>
+        )
+      })}
     </Tag>
   )
 }

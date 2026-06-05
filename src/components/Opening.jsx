@@ -89,13 +89,13 @@ export default function Opening({ onOpen }) {
           </div>
 
           <p className="opening-groom">
-            <AnimatedText text="Đức Linh" delay={200} charDelay={70} />
+            <AnimatedText text="Đức Linh" delay={200} charDelay={90} from="grand" />
           </p>
           <span className="opening-amp">
-            <AnimatedText text="&" delay={700} charDelay={0} />
+            <AnimatedText text="&" delay={950} charDelay={0} from="grand" />
           </span>
           <p className="opening-bride">
-            <AnimatedText text="Linh Đan" delay={850} charDelay={70} />
+            <AnimatedText text="Linh Đan" delay={1150} charDelay={90} from="grand" />
           </p>
 
           <div className="opening-divider">
@@ -107,10 +107,10 @@ export default function Opening({ onOpen }) {
           </div>
 
           <p className="opening-date-text">
-            <AnimatedText text="09 tháng 7, 2026" delay={1400} charDelay={35} />
+            <AnimatedText text="09 tháng 7, 2026" delay={2050} charDelay={40} />
           </p>
           <p className="opening-than-moi">
-            <AnimatedText text="Thân Mời" delay={1900} charDelay={60} />
+            <AnimatedText text="Thân Mời" delay={2550} charDelay={70} />
           </p>
 
           <button className="opening-btn" onClick={handleOpen}>

@@ -39,7 +39,7 @@ export default function WeddingInfo() {
     <section id="thong-tin" className="relative">
 
       <Reveal as="h2" className="text-center uppercase mt-10 md:mt-[148px] mb-6 md:mb-8 px-4" style={titleStyle}>
-        <AnimatedText text="Thông Tin Lễ Cưới" charDelay={45} />
+        <AnimatedText text="Thông Tin Lễ Cưới" charDelay={42} from="sides" />
       </Reveal>
 
       {/* Family info */}
