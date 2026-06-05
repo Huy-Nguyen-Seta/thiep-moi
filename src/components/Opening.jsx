@@ -55,7 +55,7 @@ export default function Opening({ onOpen }) {
     setTimeout(onOpen, 1700)
   }
 
-  const leaves = Array.from({ length: 20 }, () => ({
+  const leaves = Array.from({ length: 10 }, () => ({
     left: `${Math.random() * 100}%`,
     animationDelay: `${Math.random() * 10}s`,
     animationDuration: `${8 + Math.random() * 7}s`,
