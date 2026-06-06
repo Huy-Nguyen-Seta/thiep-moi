@@ -51,7 +51,7 @@ export default function WeddingInfo() {
           </Reveal>
           <Reveal variant="right" delay="100ms">
             <FamilySide title="Ông Bà" father="Trương Bá Linh" mother="Trần Thị Hồng Phượng"
-              address={'SN 12 - Đường Hoàng Xuân Hãn\nHà Tĩnh'} />
+              address={'06 Hà Huy Giáp\nHà Tĩnh'} />
           </Reveal>
         </div>
       </Reveal>
