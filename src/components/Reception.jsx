@@ -79,7 +79,7 @@ export default function Reception() {
         <div className="text-[20px] md:text-[30px]">11:00</div>
 
         <div className="flex items-center gap-3 md:gap-6">
-          <span className="text-[11px] md:text-[16px] uppercase text-right" style={{ fontWeight: 600 }}>Thứ Ba</span>
+          <span className="text-[11px] md:text-[16px] uppercase text-right" style={{ fontWeight: 600 }}>Thứ Năm</span>
           <Bar />
           <span className="text-[26px] md:text-[40px]" style={{ fontWeight: 600 }}>09</span>
           <Bar />
