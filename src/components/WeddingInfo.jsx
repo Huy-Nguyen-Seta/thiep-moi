@@ -82,7 +82,7 @@ export default function WeddingInfo() {
         </div>
         <div className="text-[20px] md:text-[30px]" style={{ color: PRIMARY, fontFamily: SERIF }}>11:00</div>
         <div className="flex items-center gap-6" style={{ color: PRIMARY }}>
-          <span className="text-[12px] md:text-[16px] text-right" style={{ fontFamily: SERIF, fontWeight: 600 }}>THỨ BA</span>
+          <span className="text-[12px] md:text-[16px] text-right" style={{ fontFamily: SERIF, fontWeight: 600 }}>THỨ NĂM</span>
           <span className="text-[20px] md:text-[28px] leading-none opacity-50" style={{ fontFamily: SERIF }}>|</span>
           <span className="text-[30px] md:text-[40px]" style={{ fontFamily: SERIF, fontWeight: 600 }}>09</span>
           <span className="text-[20px] md:text-[28px] leading-none opacity-50" style={{ fontFamily: SERIF }}>|</span>
