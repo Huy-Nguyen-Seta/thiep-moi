@@ -172,6 +172,11 @@
   color: var(--green-600);
 }
 
+/* Mobile: nudge the two names so they sit balanced around the green band —
+   groom (above) drops closer to the line, bride (below) eases a touch away. */
+.hero-person--groom .hero-name-block { transform: translateY(24px); }
+.hero-person--bride .hero-name-block { transform: translateY(12px); }
+
 /* ── Desktop proportions (md) ── */
 @media (min-width: 768px) {
   .hero { padding-top: 330px; padding-bottom: 32px; }
@@ -182,6 +187,8 @@
   .hero-person { gap: 16px; }
   .hero-person--groom { left: 25px; top: -60px; }
   .hero-person--bride { left: 115px; top: 260px; }
+  .hero-person--groom .hero-name-block,
+  .hero-person--bride .hero-name-block { transform: none; }
   .hero-photo { width: 235px; }
   .hero-birthorder { font-size: 16px; }
   .hero-name { font-size: 46px; }

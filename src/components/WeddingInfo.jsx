@@ -34,6 +34,48 @@ const BirthOrder = ({ children }) => (
   <div className="uppercase" style={{ color: PRIMARY, fontFamily: SERIF, fontSize: '10px', letterSpacing: '0.1em' }}>{children}</div>
 )
 
+function CeremonyBlock({ header, address, mapsQuery, time, weekday, day, month, year, lunar }) {
+  return (
+    <Reveal className="relative flex flex-col items-center gap-4 md:gap-5 text-center mt-6 md:mt-8" style={{ fontFamily: SERIF }}>
+      <div className="flex flex-col items-center gap-2" style={{ color: PRIMARY }}>
+        <div className="font-normal text-[16px] md:text-[18px] whitespace-pre-line text-center uppercase">
+          {header}
+        </div>
+        {address && (
+          <div className="font-normal text-[12px] md:text-[15px] whitespace-pre-line text-center">
+            {address}
+          </div>
+        )}
+        <p className="font-normal text-[16px] md:text-[18px] mb-2 uppercase">Vào Lúc</p>
+      </div>
+      <div className="text-[20px] md:text-[30px]" style={{ color: PRIMARY, fontFamily: SERIF }}>{time}</div>
+      <div className="flex items-center gap-6" style={{ color: PRIMARY }}>
+        <span className="text-[12px] md:text-[16px] text-right" style={{ fontFamily: SERIF, fontWeight: 600 }}>{weekday}</span>
+        <span className="text-[20px] md:text-[28px] leading-none opacity-50" style={{ fontFamily: SERIF }}>|</span>
+        <span className="text-[30px] md:text-[40px]" style={{ fontFamily: SERIF, fontWeight: 600 }}>{day}</span>
+        <span className="text-[20px] md:text-[28px] leading-none opacity-50" style={{ fontFamily: SERIF }}>|</span>
+        <span className="text-[12px] md:text-[16px] text-left" style={{ fontFamily: SERIF, fontWeight: 600 }}>{month}</span>
+      </div>
+      <div className="text-[18px] md:text-[24px]" style={{ color: PRIMARY, fontFamily: SERIF }}>{year}</div>
+      {lunar && (
+        <div className="text-xs md:text-sm uppercase tracking-[0.25em]" style={{ color: PRIMARY, fontFamily: SERIF }}>{lunar}</div>
+      )}
+      {mapsQuery && (
+        <a
+          href={`https://www.google.com/maps?q=${mapsQuery}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-sm tracking-wider underline underline-offset-4 decoration-1 transition-opacity hover:opacity-70"
+          style={{ color: PRIMARY }}
+        >
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
+          Xem chỉ đường
+        </a>
+      )}
+    </Reveal>
+  )
+}
+
 export default function WeddingInfo() {
   return (
     <section id="thong-tin" className="relative">
@@ -72,25 +114,31 @@ export default function WeddingInfo() {
         <Reveal as="span"><BirthOrder>Thứ Nữ</BirthOrder></Reveal>
       </div>
 
-      {/* Ceremony date/time */}
-      <Reveal className="relative flex flex-col items-center gap-4 md:gap-5 text-center mt-6 md:mt-8" style={{ fontFamily: SERIF }}>
-        <div className="flex flex-col items-center gap-2" style={{ color: PRIMARY }}>
-          <div className="font-normal text-[16px] md:text-[18px] whitespace-pre-line text-center uppercase">
-            {'Lễ Thành Hôn Được Cử Hành Tại\nKhách Sạn Sailing'}
-          </div>
-          <p className="font-normal text-[16px] md:text-[18px] mb-2 uppercase">Vào Lúc</p>
-        </div>
-        <div className="text-[20px] md:text-[30px]" style={{ color: PRIMARY, fontFamily: SERIF }}>11:00</div>
-        <div className="flex items-center gap-6" style={{ color: PRIMARY }}>
-          <span className="text-[12px] md:text-[16px] text-right" style={{ fontFamily: SERIF, fontWeight: 600 }}>THỨ NĂM</span>
-          <span className="text-[20px] md:text-[28px] leading-none opacity-50" style={{ fontFamily: SERIF }}>|</span>
-          <span className="text-[30px] md:text-[40px]" style={{ fontFamily: SERIF, fontWeight: 600 }}>09</span>
-          <span className="text-[20px] md:text-[28px] leading-none opacity-50" style={{ fontFamily: SERIF }}>|</span>
-          <span className="text-[12px] md:text-[16px] text-left" style={{ fontFamily: SERIF, fontWeight: 600 }}>Tháng 07</span>
-        </div>
-        <div className="text-[18px] md:text-[24px]" style={{ color: PRIMARY, fontFamily: SERIF }}>2026</div>
-        <div className="text-xs md:text-sm uppercase tracking-[0.25em]" style={{ color: PRIMARY, fontFamily: SERIF }}>(Tức ngày 25/05 năm Bính Ngọ)</div>
-      </Reveal>
+      {/* Engagement ceremony (Lễ Đính Hôn) — above the wedding ceremony */}
+      <CeremonyBlock
+        header={'Lễ Đính Hôn Được Cử Hành Tại\nHội Trường Sự Kiện - Trường Cao Đẳng Nguyễn Du'}
+        address={'Số 12 - Đ. Hoàng Xuân Hãn - Đại Nài\nP. Thành Sen - Hà Tĩnh'}
+        mapsQuery="Truong+Cao+Dang+Nguyen+Du+Hoang+Xuan+Han+Dai+Nai+Thanh+Sen+Ha+Tinh"
+        time="10:30"
+        weekday="THỨ BA"
+        day="30"
+        month="Tháng 06"
+        year="2026"
+      />
+
+      {/* Divider between the two ceremonies */}
+      <div className="mx-auto my-6 md:my-8 h-px w-24 md:w-32" style={{ backgroundColor: 'color-mix(in srgb, #30530F 30%, transparent)' }} />
+
+      {/* Wedding ceremony (Lễ Thành Hôn) */}
+      <CeremonyBlock
+        header={'Lễ Thành Hôn Được Cử Hành Tại\nKhách Sạn Sailing'}
+        time="11:00"
+        weekday="THỨ NĂM"
+        day="09"
+        month="Tháng 07"
+        year="2026"
+        lunar="(Tức ngày 25/05 năm Bính Ngọ)"
+      />
     </section>
   )
 }
